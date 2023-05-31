@@ -17,7 +17,7 @@ const getBodyData = (request) => {
                 body += chunk.toString()
             })
     
-            request.on('end', async () => {
+            request.on('end', async () => { 
                 body = JSON.parse(body)
                 resolve(body)
             })                    
@@ -50,8 +50,14 @@ const getParamsData = (request, urlRoute) => {
     })
 }
 
+const responseJson = (response, status, data) => {
+    response.writeHead(status, undefined, { 'Content-Type': 'application/json' })
+    return response.end(JSON.stringify(data))
+}
+
 module.exports = {
     writeDataToFile,
     getBodyData,
-    getParamsData
+    getParamsData,
+    responseJson
 }

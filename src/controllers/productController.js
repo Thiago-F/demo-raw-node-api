@@ -1,15 +1,13 @@
 
 const Product = require('../models/productModel')
-const { getBodyData } = require('../utils')
+const { responseJson } = require('../utils')
 
 const getProducts = async (request, response) => {
     try {
         const products = await Product.findAll()
-
-        response.writeHead(200, undefined, {'Content-Type': 'application/json'})
-        return response.end(JSON.stringify(products))
+        return responseJson(response, 200, products)
     } catch (error) {
-        console.log(error)
+        return responseJson(response, 500, { error: 'System Error' })
     }
 }
 
@@ -23,18 +21,14 @@ const getProduct = async (request, response) => {
             return response.end(JSON.stringify({ message: 'Product not found' }))
         }
 
-        response.writeHead(200, undefined, {'Content-Type': 'application/json'})
-        return response.end(JSON.stringify(product))
+        return responseJson(response, 200, product)
     } catch (error) {
-        console.log(error)
+        return responseJson(response, 500, { error: 'System Error' })
     }
 }
 
 const createProduct = async (request, response) => {
-    try {       
-        console.log('req.body', request.body)
-
-        // const body = await getBodyData(request)
+    try {
         const { name, description, priceInCents } = request.body
         
         const productData = {
@@ -44,10 +38,9 @@ const createProduct = async (request, response) => {
         }
 
         const product = await Product.create(productData)
-        response.writeHead(201, undefined, {'Content-Type': 'application/json'})
-        return response.end(JSON.stringify(product))
+        return responseJson(response, 201, product)
     } catch (error) {
-        console.log(error)
+        return responseJson(response, 500, { error: 'System Error' })
     }
 }
 
