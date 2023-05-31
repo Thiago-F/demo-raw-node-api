@@ -44,8 +44,39 @@ const createProduct = async (request, response) => {
     }
 }
 
+const updateProduct = async (request, response) => {
+    try {
+        const { id } = request.params
+        const { name, description, priceInCents } = request.body
+
+        const productData = {
+            name,
+            description,
+            priceInCents
+        }
+
+        const product = await Product.updateById(Number(id), productData)
+        return responseJson(response, 200, product)
+    } catch (error) {
+        return responseJson(response, 500, { error: 'System Error' })
+    }
+}
+
+const removeProduct = async (request, response) => {
+    try {
+        const { id } = request.params
+
+        const product = await Product.removeById(Number(id))
+        return responseJson(response, 200, product)
+    } catch (error) {
+        return responseJson(response, 500, { error: 'System Error' })
+    }
+}
+
 module.exports = {
     getProducts,
     getProduct,
-    createProduct
+    createProduct,
+    updateProduct,
+    removeProduct
 }
