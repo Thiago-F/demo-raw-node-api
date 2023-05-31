@@ -10,59 +10,5 @@
         "name": "Another product Name",
         "description": "Generic description",
         "priceInCents": 30000
-    },
-    {
-        "id": 3,
-        "name": "Created Product",
-        "description": "Generic description",
-        "priceInCents": 30000
-    },
-    {
-        "id": 4,
-        "name": "Test Product",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 5,
-        "name": "Test Product DENOVO",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 6,
-        "name": "Test Product 2",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 7,
-        "name": "Test Product 5",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 8,
-        "name": "Test Product 5",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 9,
-        "name": "Test Product 6",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 10,
-        "name": "Test Product 7",
-        "description": "Generic description",
-        "priceInCents": 10000
-    },
-    {
-        "id": 11,
-        "name": "Test Product 8",
-        "description": "Generic description",
-        "priceInCents": 10000
     }
 ]
