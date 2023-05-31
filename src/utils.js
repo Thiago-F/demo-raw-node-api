@@ -9,7 +9,7 @@ const writeDataToFile = (filename, content) => {
     })
 }
 
-const getPostData = (request) => {
+const getBodyData = (request) => {
     return new Promise((resolve, reject) => {
         try {
             let body = ''
@@ -27,7 +27,31 @@ const getPostData = (request) => {
     })
 }
 
+const getParamsData = (request, urlRoute) => {
+    return new Promise((resolve, reject) => {
+        try {
+            const { url } = request
+
+            let params = {}
+            if (urlRoute.match(':')) {
+                const urlItems = url.split('/')
+                const reference = urlRoute.split('/')
+
+                reference.forEach((ref, index) => {
+                    if (ref.match(':') && urlItems[index]) {
+                        params[ref.replace(':', '')] = urlItems[index]
+                    }
+                })
+            }
+            resolve(params)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
 module.exports = {
     writeDataToFile,
-    getPostData
+    getBodyData,
+    getParamsData
 }

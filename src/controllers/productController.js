@@ -1,6 +1,6 @@
 
 const Product = require('../models/productModel')
-const { getPostData } = require('../utils')
+const { getBodyData } = require('../utils')
 
 const getProducts = async (request, response) => {
     try {
@@ -13,8 +13,9 @@ const getProducts = async (request, response) => {
     }
 }
 
-const getProduct = async (request, response, id) => {
+const getProduct = async (request, response) => {
     try {
+        const { id } = request.params
         const product = await Product.findById(id)
 
         if(!product) {
@@ -30,9 +31,11 @@ const getProduct = async (request, response, id) => {
 }
 
 const createProduct = async (request, response) => {
-    try {        
-        const body = await getPostData(request)
-        const { name, description, priceInCents } = body
+    try {       
+        console.log('req.body', request.body)
+
+        // const body = await getBodyData(request)
+        const { name, description, priceInCents } = request.body
         
         const productData = {
             name, 
